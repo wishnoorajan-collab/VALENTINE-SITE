@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For Her 🌸</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      width: 100vw;
+      background: url('BG2.jpg') no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .content {
+      margin-top: 20%;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+    .content.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h1 {
+      font-size: 3em;
+      background: linear-gradient(to right, #ff3366, #ffcc00, #66ccff, #ff66cc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 6s linear infinite;
+      text-shadow: 0 0 25px rgba(255,255,255,0.6);
+    }
+    p {
+      font-size: 1.5em;
+      text-shadow: 0 0 20px black;
+    }
+
+    .dialogue {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #fff;
+      animation: dialogueGlow 2s infinite alternate;
+    }
+
+    .btn.wish {
+      margin-top: 30px;
+      padding: 12px 25px;
+      font-size: 1.3em;
+      background: #ff66cc;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      animation: pulseWish 1.5s infinite alternate;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes dialogueGlow {
+      from { text-shadow: 0 0 10px #ff66cc; }
+      to   { text-shadow: 0 0 20px #ff3399; }
+    }
+
+    @keyframes pulseWish {
+      from { transform: scale(1); }
+      to   { transform: scale(1.15); }
+    }
+
+    .particle {
+      position: absolute;
+      opacity: 0.9;
+      animation: floatUp 4s forwards, pulse 1.5s infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0vh) scale(1); opacity: 1; }
+      100% { transform: translateY(-120vh) scale(1); opacity: 0; }
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.4); }
+    }
+  </style>
+</head>
+<body>
+  <div class="content" id="mainContent">
+    <h1>HAPPY VALENTINE'S DAY , MY KUTTY 💖</h1>
+    <p>YOU MAKE MY WORLD BRIGHTER EVERY SINGLE DAY</p>
+    <div class="dialogue">✨ CLICK ANYWHERE TO RELEASE TEDDY & HEART ✨</div>
+    <button class="btn wish" onclick="window.location.href='index3.html'"> HER 🌸💫</button>
+  </div>
+
+  <div id="particleContainer"></div>
+
+  <script>
+    window.onload = () => {
+      setTimeout(()=>{
+        document.getElementById("mainContent").classList.add("show");
+      },1000);
+    };
+
+    const container = document.getElementById("particleContainer");
+    const emojis = ["🩶","🧸"]; // grey heart first, then teddy
+    let index = 0;
+
+    const heartOffsets = [
+      {x:0,y:0}, 
+      {x:-40,y:-20}, 
+      {x:40,y:-20}, 
+      {x:-20,y:20}, 
+      {x:20,y:20}
+    ];
+
+    function spawnHeart(x,y){
+      for(let i=0; i<heartOffsets.length; i++){
+        const e = document.createElement("div");
+        e.className = "particle";
+        e.innerText = emojis[index];
+        e.style.left = (x + heartOffsets[i].x + (Math.random()*15-7)) + "px";
+        e.style.top = (y + heartOffsets[i].y + (Math.random()*15-7)) + "px";
+        e.style.fontSize = (28 + Math.random()*12) + "px";
+        container.appendChild(e);
+        setTimeout(()=>e.remove(),4000);
+      }
+      index = (index+1) % emojis.length;
+    }
+
+    document.addEventListener("click", e=>{
+      spawnHeart(e.clientX, e.clientY);
+    });
+  </script>
+</body>
+</html>

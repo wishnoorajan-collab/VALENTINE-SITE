@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Wish 💫</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: url('BG4.jpg') no-repeat center center;
+      background-size: cover;
+      font-family: 'Dancing Script', cursive;
+      text-align: center;
+      color: #31eeff;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 15px #ffffff; }
+      to   { text-shadow: 0 0 35px #ffc0cb; }
+    }
+
+    /* Reverse L layout */
+    .valen {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 260px);
+      gap: 25px;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .valen img {
+      width: 200px;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 4px solid #ff66cc;
+      box-shadow: 0 0 20px #000000;
+      transition: transform 0.5s, box-shadow 0.5s;
+      margin: 0 auto;
+      animation: rotateGlow 4s infinite linear;
+    }
+
+    .valen img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 30px #ff66cc, 0 0 50px #ff99cc;
+    }
+
+    /* rotating pink glow */
+    @keyframes rotateGlow {
+      0%   { box-shadow: 0 0 20px #ff99cc, 0 0 40px #ff66cc; }
+      25%  { box-shadow: 0 0 25px #ff66cc, 0 0 45px #ff99cc; }
+      50%  { box-shadow: 0 0 30px #ff3399, 0 0 50px #ff66cc; }
+      75%  { box-shadow: 0 0 25px #ff66cc, 0 0 45px #ff99cc; }
+      100% { box-shadow: 0 0 20px #ff99cc, 0 0 40px #ff66cc; }
+    }
+
+    /* Cute glowing button */
+    .btn-next {
+      margin-top: 40px;
+      padding: 12px 25px;
+      font-size: 1.3em;
+      background: #ffffff;
+      color: #0fcfc6;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      animation: buttonGlow 2s infinite alternate;
+      position: relative;
+      z-index: 10; /* ensures button stays above photos */
+    }
+
+    @keyframes buttonGlow {
+      from { box-shadow: 0 0 10px #ffffff; opacity: 0.7; }
+      to   { box-shadow: 0 0 25px #ffffff; opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>MY THANGGO’S BEAUTIFUL MOMENTS 💖</h1>
+
+  <!-- Cute glowing button to go to Page 4 -->
+  <button class="btn-next" onclick="window.location.href='index5.html'">💌 Open Your Letter 💌</button>
+
+  <!-- Reverse L arrangement -->
+  <div class="valen">
+    <img src="photo1.jpeg" alt="Photo 1" style="grid-column:4; grid-row:1;">
+    <img src="photo2.jpeg" alt="Photo 2" style="grid-column:4; grid-row:2;">
+    <img src="photo3.jpeg" alt="Photo 3" style="grid-column:4; grid-row:3;">
+    <img src="photo4.jpeg" alt="Photo 4" style="grid-column:3; grid-row:3;">
+    <img src="photo5.jpeg" alt="Photo 5" style="grid-column:2; grid-row:3;">
+    <img src="photo6.jpeg" alt="Photo 6" style="grid-column:1; grid-row:3;">
+  </div>
+
+  <!-- Background music -->
+  <audio autoplay loop>
+    <source src="bgm.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+</body>
+</html>

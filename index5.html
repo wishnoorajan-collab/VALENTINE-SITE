@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>A Letter For You 💌</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      width: 100vw;
+      background: url('lotus.jpg') no-repeat center center;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Dancing Script', cursive;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .envelope {
+      width: 250px;
+      height: 180px;
+      background: #ff66cc;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 5px;
+      box-shadow: 0 0 20px rgba(255,105,180,0.8);
+      cursor: pointer;
+      transition: all 1.5s ease;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 125px solid transparent;
+      border-right: 125px solid transparent;
+      border-bottom: 90px solid #ff3399;
+      transition: transform 1s ease;
+      transform-origin: top;
+      z-index: 3;
+    }
+
+    .letter {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 320px;
+      height: 500px;
+      background: #fdf5e6;
+      border: 2px solid #d2b48c;
+      border-radius: 5px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      font-family: 'Papyrus', cursive;
+      font-size: 1.1em;
+      color: #8e401c;
+      padding: 20px;
+      text-align: left;
+      transform: translate(-50%, -50%) scale(0); /* hidden initially */
+      transition: all 1.5s ease;
+      z-index: 1;
+    }
+
+    /* Envelope open state */
+    .open .flap {
+      transform: rotateX(180deg);
+    }
+
+    .open.envelope {
+      left: 25%; /* move envelope to left side */
+      transform: translateY(-50%);
+    }
+
+    .show-letter {
+      transform: translate(50%, -50%) scale(1.1); /* zoom + move right side */
+      left: 50%;
+    }
+
+    /* Home button */
+    .btn-home {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 25px;
+      font-size: 1.2em;
+      background: #ffffff;
+      color: #ff3399;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      animation: homeGlow 2s infinite alternate, heartbeat 1.5s infinite;
+    }
+
+    @keyframes homeGlow {
+      from { box-shadow: 0 0 10px #ffffff; opacity: 0.7; }
+      to   { box-shadow: 0 0 25px #ffffff; opacity: 1; }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="envelope" id="envelope">
+      <div class="flap"></div>
+    </div>
+    <div class="letter" id="letter">
+      My Dearest Baby Sayangg 💖,<br><br>
+      From the moment you entered my life, everything became brighter always brighter.  
+      This letter carries all the love I hold for you — timeless, endless, and true.  
+      I always remember when I met you in Batu Caves, still in my eyes now and forever.  
+      I will never let your hands go, You and I will live more than a lifetime.  
+      I always believe our relationship till my death.  
+      You are my special one, my heart, my joy, my everything, my forever Valentine.  
+      <br><br>
+      Yours always,<br>
+      Wishnoo 💫
+    </div>
+
+    <!-- Home button -->
+    <button class="btn-home" onclick="window.location.href='index1.html'">🏠 Back to Home </button>
+  </div>
+
+  <script>
+    const envelope = document.getElementById("envelope");
+    const letter = document.getElementById("letter");
+
+    envelope.addEventListener("click", () => {
+      envelope.classList.toggle("open");
+      letter.classList.toggle("show-letter");
+    });
+  </script>
+</body>
+</html>
