@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine Proposal</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      width: 100vw;
+      background: url('BG1.jpg') no-repeat center center;
+      background-size: 100% 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Dancing Script', cursive;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 40px;
+      color: #800080; /* royal purple */
+      animation: pastelGlow 2s infinite alternate;
+    }
+
+    @keyframes pastelGlow {
+      from { text-shadow: 0 0 15px #ffffff, 0 0 25px #ffc0cb; }
+      to   { text-shadow: 0 0 30px #ffffff, 0 0 45px #ff99cc; }
+    }
+
+    .btn {
+      font-size: 1.5em;
+      padding: 15px 30px;
+      margin: 15px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .yes {
+      background: #ff66cc;
+      color: white;
+      animation: shake 1s infinite;
+      font-size: 2em;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(2px, -2px); }
+      50% { transform: translate(-2px, 2px); }
+      75% { transform: translate(2px, 2px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    .no {
+      background: #999;
+      color: white;
+      position: absolute;
+    }
+
+    .gift {
+      display: none;
+      background: gold;
+      color: black;
+      font-weight: bold;
+      animation: pulseGift 1.5s infinite alternate;
+    }
+
+    @keyframes pulseGift {
+      from { transform: scale(1); }
+      to   { transform: scale(1.2); }
+    }
+
+    /* Confetti animation */
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-200px); opacity: 0; }
+    }
+
+    /* Fireworks styling */
+    .firework {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      animation: explode 1.5s forwards;
+    }
+
+    @keyframes explode {
+      0% { transform: scale(0.5); opacity: 1; }
+      100% { transform: scale(3); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <h1>WILL YOU BE MY VALENTINE ?</h1>
+  <button class="btn yes" id="yesBtn">YES! 💖</button>
+  <button class="btn no" id="noBtn">NO 😢</button>
+  <button class="btn gift" id="giftBtn" onclick="window.location.href='index2.html'"> OPEN YOUR GIFT 🎁</button>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const giftBtn = document.getElementById("giftBtn");
+
+    // Make "No" button run away
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    });
+
+    // Fireworks generator
+    function launchFireworks(){
+      const colors = ["#ff3366","#ffcc00","#66ccff","#ff66cc","#ffffff"];
+      for(let i=0; i<30; i++){
+        const fw = document.createElement("div");
+        fw.className = "firework";
+        fw.style.color = colors[Math.floor(Math.random()*colors.length)];
+        fw.style.left = Math.random()*window.innerWidth + "px";
+        fw.style.top = Math.random()*window.innerHeight/2 + "px"; // upper half sky
+        document.body.appendChild(fw);
+        setTimeout(()=>fw.remove(),1500);
+      }
+    }
+
+    // Show "Open Your Gift" when Yes is clicked
+    yesBtn.addEventListener("click", () => {
+      giftBtn.style.display = "inline-block";
+      // Confetti effect
+      for(let i=0; i<30; i++){
+        const confetti = document.createElement("div");
+        confetti.innerText = "💖";
+        confetti.style.position = "absolute";
+        confetti.style.left = Math.random()*window.innerWidth + "px";
+        confetti.style.top = Math.random()*window.innerHeight + "px";
+        confetti.style.fontSize = (20+Math.random()*20)+"px";
+        confetti.style.opacity = 0.8;
+        confetti.style.animation = "floatUp 3s forwards";
+        document.body.appendChild(confetti);
+        setTimeout(()=>confetti.remove(),3000);
+      }
+      // Fireworks (multi-shot repeaters)
+      launchFireworks();
+      setTimeout(launchFireworks,1000);
+      setTimeout(launchFireworks,2000);
+    });
+  </script>
+</body>
+</html>
